@@ -14,19 +14,17 @@ function sign() {
   url.headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
   url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1'
   url.headers['X-Requested-With'] = 'XMLHttpRequest'
-  
   sngxpro.get(url, (error, response, data) => {
     const result = JSON.parse(data)
     const title = `${cookieName}`
-	let subTitle = ``
+    let subTitle = ``
     let detail = ``
-	const ret = result.ret
-	const msg = result.msg
-	const traffic = result.traffic
-	const todayUsedTraffic = result.trafficInfo.todayUsedTraffic
-  const lastUsedTraffic = result.trafficInfo.lastUsedTraffic
-	const unUsedTraffic = result.trafficInfo.unUsedTraffic
-	// 签到成功
+    const ret = result.ret
+    const msg = result.msg
+    const traffic = result.traffic
+    const todayUsedTraffic = result.trafficInfo.todayUsedTraffic
+    const lastUsedTraffic = result.trafficInfo.lastUsedTraffic
+    const unUsedTraffic = result.trafficInfo.unUsedTraffic
     if (result.ret == 1){
       subTitle = `签到结果: 成功`
       detail = `此次签到奖励: ${msg}, 总流量: ${traffic}, 今日已使用: ${todayUsedTraffic}, 近期累计使用: ${lastUsedTraffic}, 剩余流量: ${unUsedTraffic}`
@@ -36,7 +34,7 @@ function sign() {
       subTitle = `签到结果: 失败`
       detail = `失败说明: ${msg}`
     }
-  	sngxpro.msg(title, subTitle, detail)
+    sngxpro.msg(title, subTitle, detail)
     sngxpro.log(`${cookieName}, data: ${data}`)
     sngxpro.done()
   })
